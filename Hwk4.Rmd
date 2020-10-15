@@ -1,6 +1,6 @@
 ---
 title: "Homework 4"
-Author: Patrick Sinclair
+author: Patrick Sinclair
 output: github_document
 ---
 ```{r setup, include=FALSE, echo = FALSE}
@@ -17,9 +17,9 @@ require(AER)
 #### How important is a college degree in determining an individual's wages?  
 A question that is even more relevant in the current economic climate than usual, it is one that seems particularly susceptible to the impact of external variables. Quality of tertiary institution, financial standing of family during one's upbringing, relevance to actual career path are potential confounding variables that immediately spring to mind.
 
-To approach the problem, the subset has been expanded to include people in the workforce, between 25 and 70 (to account for the ever increasing retirement age), working full time hours at least 48 weeks of the year.
+To approach the problem, the subset has been expanded to include people in the workforce, between 25 and 70 (to account for the ever increasing retirement age), working full time hours at least 48 weeks of the year. I'll run several linear regressions on the subset to determine whether we can find a causal link between college degree and income, or whether we just observe some sort of correlation.
 
-The first regression looks at the correlation between income and age and gender.
+The first regression looks at the relationship between income and age and gender. I reduced the number of observations in the random uniform distribution to 0.05 as the length of the data set is 61,945 observations. To demonstrate the range of incomes at each age more clearly, the jitter of the plots has been reduced to 1 and the y-limit has been increased to 250,000 for the same reason. When I tested higher y-limits, the presentation lost clarity.
 ```{r, echo=FALSE}
 setwd("~/CCNY/Econometrics/Homework/Draft Hwk Files/Homework-4")
 age_gender <- lm(INCWAGE ~ AGE + female)
@@ -41,10 +41,12 @@ predictedf$yhat <- predict(age_gender, newdata = predictedf)
 lines(yhat ~ AGE, data = predictedf, col = rgb(1, 0, 0))
 ```
 ```{r, echo=FALSE}
-plot(INCWAGE ~ jitter(AGE, factor = 1), pch = 120, col = rgb(red = 0, green = 1, blue = 1, alpha = 0.3), ylim = c(0,250000), data = dat_graph)
-predicted <- data.frame(AGE = 25:70, female = 0)
+plot(INCWAGE ~ jitter(female, factor = 2), pch = 120, col = rgb(red = 0, green = 1, blue = 1, alpha = 0.6), ylim = c(0,250000), data = dat_graph)
+predicted <- data.frame(AGE = 25:70, female = 0:1)
 predicted$yhat <- predict(age_gender, newdata = predicted)
-lines(yhat ~ AGE, data = predicted)
+lines(yhat ~ female, data = predicted, col = rgb(1, 0, 0, alpha = 0.3), lwd = 0.1)
 ```
-From the 
-
+From the summary, we see that the intercept of wages is 56373.20. The Ordinary Least Squares (OLS) coefficient for the age and gender variables is 584.31 and -19921.41 respectively. All three estimators are statistically significant to the 99.9% level. This is confirmed when we examine the t and p values for the $\beta$; If we look at the confidence intervals:
+```{r echo=FALSE} 
+confint(age_gender, level=0.99)
+```

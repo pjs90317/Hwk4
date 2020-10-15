@@ -1,5 +1,6 @@
 Homework 4
 ================
+Patrick Sinclair
 
 #### How important is a college degree in determining an individual’s wages?
 
@@ -13,9 +14,17 @@ mind.
 To approach the problem, the subset has been expanded to include people
 in the workforce, between 25 and 70 (to account for the ever increasing
 retirement age), working full time hours at least 48 weeks of the year.
+I’ll run several linear regressions on the subset to determine whether
+we can find a causal link between college degree and income, or whether
+we just observe some sort of correlation.
 
-The first regression looks at the correlation between income and age and
-gender.
+The first regression looks at the relationship between income and age
+and gender. I reduced the number of observations in the random uniform
+distribution to 0.05 as the length of the data set is 61,945
+observations. To demonstrate the range of incomes at each age more
+clearly, the jitter of the plots has been reduced to 1 and the y-limit
+has been increased to 250,000 for the same reason. When I tested higher
+y-limits, the presentation lost clarity.
 
     ## 
     ## Call:
@@ -65,3 +74,14 @@ gender.
 
 ![](Hwk4_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 ![](Hwk4_files/figure-gfm/unnamed-chunk-4-1.png)<!-- --> From the
+summary, we see that the intercept of wages is 56373.20. The Ordinary
+Least Squares (OLS) coefficient for the age and gender variables is
+584.31 and -19921.41 respectively. All three estimators are
+statistically significant to the 99.9% level. This is confirmed when we
+examine the t and p values for the \(\beta\); If we look at the
+confidence intervals:
+
+    ##                   0.5 %      99.5 %
+    ## (Intercept)  52779.6778  59966.7246
+    ## AGE            509.8084    658.8098
+    ## female      -21697.8917 -18144.9375
