@@ -1,0 +1,50 @@
+---
+title: "Homework 4"
+Author: Patrick Sinclair
+output: github_document
+---
+```{r setup, include=FALSE, echo = FALSE}
+setwd("~/CCNY/Econometrics/Homework/Draft Hwk Files/Lab 2")
+load("acs2017_ny_data.RData")
+attach(acs2017_ny)
+use_varb <- (AGE >= 25) & (AGE <= 70) & (LABFORCE == 2) & (WKSWORK2 > 4) & (UHRSWORK >= 35)
+dat_use <- subset(acs2017_ny,use_varb)
+detach()
+attach(dat_use)
+require(stargazer)
+require(AER)
+```
+#### How important is a college degree in determining an individual's wages?  
+A question that is even more relevant in the current economic climate than usual, it is one that seems particularly susceptible to the impact of external variables. Quality of tertiary institution, financial standing of family during one's upbringing, relevance to actual career path are potential confounding variables that immediately spring to mind.
+
+To approach the problem, the subset has been expanded to include people in the workforce, between 25 and 70 (to account for the ever increasing retirement age), working full time hours at least 48 weeks of the year.
+
+The first regression looks at the correlation between income and age and gender.
+```{r, echo=FALSE}
+setwd("~/CCNY/Econometrics/Homework/Draft Hwk Files/Homework-4")
+age_gender <- lm(INCWAGE ~ AGE + female)
+summary(age_gender)
+plot(age_gender)
+stargazer(age_gender, type = "text")
+```
+
+```{r echo=FALSE}
+NNobs <- length(INCWAGE)
+set.seed(12345)
+graph_obs <- (runif(NNobs) < 0.05)
+dat_graph <-subset(dat_use,graph_obs)  
+```
+```{r, echo=FALSE}
+plot(INCWAGE ~ jitter(AGE, factor = 1), pch = 120, col = rgb(red = 0, green = 1, blue = 1, alpha = 0.3), ylim = c(0,250000), data = dat_graph)
+predictedf <- data.frame(AGE = 25:70, female = 1)
+predictedf$yhat <- predict(age_gender, newdata = predictedf)
+lines(yhat ~ AGE, data = predictedf, col = rgb(1, 0, 0))
+```
+```{r, echo=FALSE}
+plot(INCWAGE ~ jitter(AGE, factor = 1), pch = 120, col = rgb(red = 0, green = 1, blue = 1, alpha = 0.3), ylim = c(0,250000), data = dat_graph)
+predicted <- data.frame(AGE = 25:70, female = 0)
+predicted$yhat <- predict(age_gender, newdata = predicted)
+lines(yhat ~ AGE, data = predicted)
+```
+From the 
+
