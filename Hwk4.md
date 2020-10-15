@@ -106,31 +106,6 @@ gender variable, in an attempt to show the impact of earning a degree on
 income. Hopefully we see that degree holders earn a higher wage,
 regardless of gender.
 
-    ## The following object is masked from package:survival:
-    ## 
-    ##     veteran
-
-    ## The following objects are masked from dat_use (pos = 10):
-    ## 
-    ##     AfAm, AGE, Amindian, ANCESTR1, ANCESTR1D, ANCESTR2, ANCESTR2D,
-    ##     Asian, below_150poverty, below_200poverty, below_povertyline, BPL,
-    ##     BPLD, BUILTYR2, CITIZEN, CLASSWKR, CLASSWKRD, Commute_bus,
-    ##     Commute_car, Commute_other, Commute_rail, Commute_subway, COSTELEC,
-    ##     COSTFUEL, COSTGAS, COSTWATR, DEGFIELD, DEGFIELD2, DEGFIELD2D,
-    ##     DEGFIELDD, DEPARTS, EDUC, educ_advdeg, educ_college, educ_hs,
-    ##     educ_nohs, educ_somecoll, EDUCD, EMPSTAT, EMPSTATD, FAMSIZE,
-    ##     female, foodstamps, FOODSTMP, FTOTINC, FUELHEAT, GQ,
-    ##     has_AnyHealthIns, has_PvtHealthIns, HCOVANY, HCOVPRIV, HHINCOME,
-    ##     Hisp_Cuban, Hisp_DomR, Hisp_Mex, Hisp_PR, HISPAN, HISPAND,
-    ##     Hispanic, in_Bronx, in_Brooklyn, in_Manhattan, in_Nassau, in_NYC,
-    ##     in_Queens, in_StatenI, in_Westchester, INCTOT, INCWAGE, IND,
-    ##     LABFORCE, LINGISOL, MARST, MIGCOUNTY1, MIGPLAC1, MIGPUMA1,
-    ##     MIGRATE1, MIGRATE1D, MORTGAGE, NCHILD, NCHLT5, OCC, OWNCOST,
-    ##     OWNERSHP, OWNERSHPD, POVERTY, PUMA, PWPUMA00, RACE, race_oth,
-    ##     RACED, RELATE, RELATED, RENT, ROOMS, SCHOOL, SEX, SSMC, TRANTIME,
-    ##     TRANWORK, UHRSWORK, UNITSSTR, unmarried, veteran, VETSTAT,
-    ##     VETSTATD, white, WKSWORK2, YRSUSA1
-
     ## 
     ## Call:
     ## lm(formula = INCWAGE ~ AGE + educ_nohs + educ_hs + educ_somecoll + 
@@ -208,31 +183,6 @@ potentially earn higher income.
 To double check this, I ran another regression, this time creating a
 factor to include the educational levels. On this occasion, R excluded
 No High School as a variable.
-
-    ## The following object is masked from package:survival:
-    ## 
-    ##     veteran
-
-    ## The following objects are masked from dat_use (pos = 10):
-    ## 
-    ##     AfAm, AGE, Amindian, ANCESTR1, ANCESTR1D, ANCESTR2, ANCESTR2D,
-    ##     Asian, below_150poverty, below_200poverty, below_povertyline, BPL,
-    ##     BPLD, BUILTYR2, CITIZEN, CLASSWKR, CLASSWKRD, Commute_bus,
-    ##     Commute_car, Commute_other, Commute_rail, Commute_subway, COSTELEC,
-    ##     COSTFUEL, COSTGAS, COSTWATR, DEGFIELD, DEGFIELD2, DEGFIELD2D,
-    ##     DEGFIELDD, DEPARTS, EDUC, educ_advdeg, educ_college, educ_hs,
-    ##     educ_nohs, educ_somecoll, EDUCD, EMPSTAT, EMPSTATD, FAMSIZE,
-    ##     female, foodstamps, FOODSTMP, FTOTINC, FUELHEAT, GQ,
-    ##     has_AnyHealthIns, has_PvtHealthIns, HCOVANY, HCOVPRIV, HHINCOME,
-    ##     Hisp_Cuban, Hisp_DomR, Hisp_Mex, Hisp_PR, HISPAN, HISPAND,
-    ##     Hispanic, in_Bronx, in_Brooklyn, in_Manhattan, in_Nassau, in_NYC,
-    ##     in_Queens, in_StatenI, in_Westchester, INCTOT, INCWAGE, IND,
-    ##     LABFORCE, LINGISOL, MARST, MIGCOUNTY1, MIGPLAC1, MIGPUMA1,
-    ##     MIGRATE1, MIGRATE1D, MORTGAGE, NCHILD, NCHLT5, OCC, OWNCOST,
-    ##     OWNERSHP, OWNERSHPD, POVERTY, PUMA, PWPUMA00, RACE, race_oth,
-    ##     RACED, RELATE, RELATED, RENT, ROOMS, SCHOOL, SEX, SSMC, TRANTIME,
-    ##     TRANWORK, UHRSWORK, UNITSSTR, unmarried, veteran, VETSTAT,
-    ##     VETSTATD, white, WKSWORK2, YRSUSA1
 
     ## 
     ## Call:

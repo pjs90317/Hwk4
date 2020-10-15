@@ -54,8 +54,6 @@ We can be 95% confident that if there is in fact a relationship between income, 
 
 Now to compare levels of college education. I'm going to remove the gender variable, in an attempt to show the impact of earning a degree on income. Hopefully we see that degree holders earn a higher wage, regardless of gender.
 ```{r, echo=FALSE}
-detach()
-attach(dat_use)
 educ_indx <- factor((educ_nohs + 2*educ_hs + 3*educ_somecoll + 4*educ_college + 5*educ_advdeg), levels=c(1,2,3,4,5),labels = c("No HS","HS","SmColl","Bach","Adv"))
 age_degree <- lm(INCWAGE ~ AGE + educ_nohs + educ_hs + educ_somecoll + educ_college + educ_advdeg)
 summary(age_degree)
@@ -73,13 +71,11 @@ plot(INCWAGE ~ jitter(AGE, factor = 1), pch = 120, col = rgb(red = 0, green = 1,
 predicteddeg <- data.frame(AGE = 25:70, educ_nohs = 0, educ_hs = 0, educ_somecoll = 0, educ_college = 1, educ_advdeg = 1)
 predicteddeg$yhat <- predict(age_degree, newdata = predicteddeg)
 lines(yhat ~ AGE, data = predicteddeg, col = rgb(1, 0, 0))
-detach()
 ```
 In the above regression, education levels have been included as individual dummy variables - R did not include Advance Degree as a variable. All of the slope coefficient estimates for education levels are negative however, as educational attainment increases, the slope coefficients  become less negative. This suggests that as one's level of education increases, they potentially earn higher income.       
 
 To double check this, I ran another regression, this time creating a factor to include the educational levels. On this occasion, R excluded No High School as a variable.
 ```{r, echo=FALSE}
-attach(dat_use)
 educ_indx <- factor((educ_nohs + 2*educ_hs + 3*educ_somecoll + 4*educ_college + 5*educ_advdeg), levels=c(1,2,3,4,5),labels = c("NoHS","HS","SmColl","Bach","Adv"))
 age_degreeb <- lm(INCWAGE ~ AGE + educ_indx)
 summary(age_degreeb)
